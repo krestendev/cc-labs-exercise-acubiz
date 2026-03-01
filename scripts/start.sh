@@ -12,12 +12,16 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
+# Print a startup banner to indicate the application is launching, then resolve
+# the script's absolute path so all subsequent commands reference the correct project root.
 echo -e "${BLUE}Starting Factory Inventory Management System...${NC}\n"
 
 # Get the project root directory (parent of scripts directory)
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
 
+# Detect the operating system (macOS, Linux, or Windows/Git-Bash) so the correct
+# package manager and installation commands can be selected in the steps below.
 # ── Detect OS ─────────────────────────────────────────────────────────────────
 OS="$(uname -s)"
 case "${OS}" in
